@@ -9,6 +9,5 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('bukus/search', [BukuCOntroller::class, 'search']);
 Route::apiResource('kategoris', KategoriController::class);
 Route::apiResource('bukus', BukuCOntroller::class);

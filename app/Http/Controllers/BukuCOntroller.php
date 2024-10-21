@@ -32,34 +32,7 @@ class BukuCOntroller extends Controller
         return response()->json($buku, 201);
     }
 
-    /**
-     * Search books by category name.
-     */
-    public function search(Request $request)
-    {
-        try {
-            $kategori = $request->input('kategori');
-            $buku = Buku::whereHas('kategori', function ($query) use ($kategori) {
-                $query->where('nama_kategori', 'like', '%' . $kategori . '%');
-            })->get();
 
-            return response()->json($buku, 202);
-        } catch (\Exception $e) {
-            return response()->json([
-                'error' => 'Terjadi kesalahan saat mencari buku',
-                'message' => $e->getMessage()
-            ], 500);
-        }
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        $buku = Buku::findOrFail($id);
-        return response()->json($buku);
-    }
 
     /**
      * Update the specified resource in storage.
